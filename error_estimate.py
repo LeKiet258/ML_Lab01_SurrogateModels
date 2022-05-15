@@ -8,10 +8,25 @@ from surrogate_model import SurrogateModel
 
 
 # k-fold cross validation estimate
+def k_fold_cross_valudation_sets(m,k):
+    perm = np.random.permutation(m)
+    sets = []
+    for i in range(k): # create k-1 train set & 1 val set for each iter
+        validate = perm[i:m:k]
+        train = perm[np.setdiff1d(np.arange(i,m), np.arange(i,m,k))]
+        sets.append(train_test(train, validate))
+    return sets 
 
+def cross_validation_estimate(X, y, bases, smoothing, metric, sets):
+    b = len(sets)
+    res = 0.0
+    model = SurrogateModel(bases, smoothing, metric)
+    for tt in sets:
+        model.fit(X[tt['train']], y[tt['train']])
+        res += model.validate(X[tt['test']], y[tt['test']])
+    return res / b
 
 # Bootstrap estimate
-
 def bootstrap_sets(m, b, random_state=None):
     if random_state:
         np.random.seed(random_state)
