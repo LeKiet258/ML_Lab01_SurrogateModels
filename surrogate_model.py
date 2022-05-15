@@ -33,5 +33,8 @@ class SurrogateModel:
         return np.array(np.matmul(np.matrix(np.array(
             [np.array([b(x) for b in self.__bases]) for x in X])), self.theta))
 
+    def function(self, X):
+        return self.predict(np.array([X]))[0]
+
     def validate(self, X, y):
         return self.__metric(self.predict(X), y)

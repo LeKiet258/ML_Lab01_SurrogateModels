@@ -23,7 +23,6 @@ def cos(i, c):
 
 # Basis functions set
 
-
 def linear(n):
     return [constant(1.0)] + [power(i, 1) for i in range(n)]
 
@@ -62,7 +61,7 @@ def sinusoidal(n, k, a, b):
     terms = []
     bases = [sinusoidal_1d(i, k, a, b) for i in range(n)]
 
-    for ks in product(*[[i for i in range(k + 1)] for _ in range(n)]):
+    for ks in product(*[[i for i in range(2 * k + 1)] for _ in range(n)]):
         if sum([_k + 1 // 2 for _k in ks]) <= k:
             def func(ks):
                 return lambda x: np.prod(np.array([bases[i][ks[i]](x) for i in range(n)]))
