@@ -1,1 +1,2 @@
-https://github.com/jomavera/optimizationAlgosPort/blob/main/chap_14.ipynb
+- code: https://github.com/jomavera/optimizationAlgosPort/blob/main/chap_14.ipynb
+- pros & cons: https://medium.com/@eijaz/holdout-vs-cross-validation-in-machine-learning-7637112d3f8f
