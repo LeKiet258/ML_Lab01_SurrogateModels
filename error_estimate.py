@@ -9,7 +9,7 @@ from surrogate_model import SurrogateModel
 
 # k-fold cross validation estimate
 def k_fold_cross_valudation_sets(m,k):
-    perm = np.random.permutation(m)
+    perm = np.random.permutation(m) # shuffle original m data points
     sets = []
     for i in range(k): # create k-1 train set & 1 val set for each iter
         validate = perm[i:m:k]
